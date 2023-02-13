@@ -26,6 +26,13 @@ main(int argc, char **argv) {
     linked_list_node* end = get_end_of_linked_list(&list);
 
     printf("End of linked list: %d\n", end->value);
+
+    printf("Appending to list...\n");
+    linked_list_node append;
+    append.value = 30;
+    append.next = NULL;
+    append_to_linked_list(&append, &list);
+    printf("Printing end of the list now: %d\n", get_end_of_linked_list(&list)->value);
     return 0;
 }
 
@@ -38,4 +45,14 @@ get_end_of_linked_list(linked_list* list) {
     }
 
     return head;
+}
+
+void append_to_linked_list(linked_list_node* node, linked_list *list) {
+    linked_list_node *end_node = get_end_of_linked_list(list);
+    end_node->next = node;
+}
+
+void print_tail(linked_list *list) {
+    linked_list_node *tail = get_end_of_linked_list(list);
+    printf("%d",tail->value);
 }
